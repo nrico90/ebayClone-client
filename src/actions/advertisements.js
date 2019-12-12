@@ -14,12 +14,14 @@ const advertisementsFetched = advertisements => ({
 });
 
 export const loadAdvertisements = () => (dispatch, getState) => {
+  console.log("trying to get advertisements");
   // when the state already contains events, we don't fetch them again
-  if (getState().advertisements.length) return;
-
+  // if (getState().advertisements.length) return;
+  console.log(`${baseUrl}/advertisements`);
   // a GET /events request / function in a function, thunk
   request(`${baseUrl}/advertisements`)
     .then(response => {
+      console.log(response);
       // dispatch an EVENTS_FETCHED action that contains the events
       dispatch(advertisementsFetched(response.body));
     })
